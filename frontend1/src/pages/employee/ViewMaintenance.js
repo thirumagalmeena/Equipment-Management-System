@@ -41,23 +41,6 @@ const MaintenanceTaskManagement = () => {
             console.error("Error fetching assigned employees:", error);
         }
     };
-
-    const handleDelete = async (maintenanceID) => {
-        if (!window.confirm("Are you sure you want to delete this maintenance task?")) return;
-        
-        try {
-            const response = await axios.delete(`http://localhost:5000/assign_maintenance/delete/${maintenanceID}`);
-            if (response.data.status === "success") {
-                alert("Maintenance task deleted successfully.");
-                setMaintenanceStatus(maintenanceStatus.filter(task => task.MaintenanceID !== maintenanceID));
-            } else {
-                alert("Failed to delete maintenance task.");
-            }
-        } catch (error) {
-            console.error("Error deleting maintenance task:", error);
-            alert("Failed to delete maintenance task.");
-        }
-    };
     
 
     // Handle selecting a maintenance task
@@ -160,38 +143,6 @@ const MaintenanceTaskManagement = () => {
             </div>
 
             <div className="content">
-                {view === "assign" && (
-                    <div>
-                        <h3>Assign Maintenance</h3>
-                        <p>Select an equipment maintenance task to assign.</p>
-
-                        <select 
-                            value={selectedMaintenance} 
-                            onChange={handleSelectionChange} 
-                            style={{ marginRight: "10px", padding: "5px" }}
-                        >
-                            <option value="">Select Maintenance</option>
-                            {pendingMaintenance.length > 0 ? (
-                                pendingMaintenance.map((task) => (
-                                    <option key={task.MaintenanceID} value={task.MaintenanceID}>
-                                        {task.Name} ({task.Status})
-                                    </option>
-                                ))
-                            ) : (
-                                <option disabled>No pending maintenance</option>
-                            )}
-                        </select>
-
-                        <button 
-                            onClick={handleAssign} 
-                            style={{ cursor: "pointer", padding: "5px 10px", backgroundColor: "#28a745", color: "#fff", border: "none" }}
-                        >
-                            Assign
-                        </button>
-
-                        <p>{message}</p>
-                    </div>
-                )}
                 
                 {view === "edit" && (
                         <div>
@@ -244,7 +195,6 @@ const MaintenanceTaskManagement = () => {
                     <th>Status</th>
                     <th>Equipment ID</th>
                     <th>Equipment Name</th>
-                    <th>Actions</th> {/* New column for delete button */}
                 </tr>
             </thead>
             <tbody>
@@ -255,14 +205,6 @@ const MaintenanceTaskManagement = () => {
                         <td>{task.Status}</td>
                         <td>{task.EquipmentID}</td>
                         <td>{task.EquipmentName}</td>
-                        <td>
-                            <button 
-                                style={{ backgroundColor: "red", color: "white", cursor: "pointer" }}
-                                onClick={() => handleDelete(task.MaintenanceID)}
-                            >
-                                Delete
-                            </button>
-                        </td>
                     </tr>
                 ))}
             </tbody>

@@ -8,8 +8,6 @@ import EquipmentManagement from "./pages/admin/EquipmentManagement";
 import MaintenanceTasks from "./pages/admin/MaintenanceTasks";
 import MaintenanceCompanies from "./pages/admin/MaintenanceCompanies";
 import Reports from "./pages/admin/Reports";
-import Notifications from "./pages/admin/Notifications";
-import Security from "./pages/admin/Security";
 import Navbar from "./components/Navbar";
 import EmployeeProfile from "./pages/employee/EmployeeProfile"; 
 import ViewEmployee from "./pages/employee/ViewEmployee";
@@ -36,8 +34,6 @@ function App() {
         <Route path="/admin/maintenance" element={<MaintenanceTasks />} />
         <Route path="/admin/companies" element={<MaintenanceCompanies />} />
         <Route path="/admin/reports" element={<Reports />} />
-        <Route path="/admin/notifications" element={<Notifications />} />
-        <Route path="/admin/security" element={<Security />} />
 
         {/*Employee Page Features*/}
         <Route path="/employee/profile/:ssn" element={<EmployeeProfile />} /> 

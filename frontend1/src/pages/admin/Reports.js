@@ -22,31 +22,14 @@ const ReportsManagement = () => {
                 { name: "Low Inventory Components", key: "low-inventory-components" },
                 { name: "Outsourced Hours", key: "outsourced-hours" }
             ]
-        },
-        {
-            name: "Visual Reports", 
-            reports: [
-                { name: "Breakdown vs Shutdown", key: "breakdown_vs_shutdown" },
-                { name: "Maintenance Cost Trend", key: "maintenance_cost_trend" },
-                { name: "Total Hours Worked", key: "total_hours_worked" },
-                { name: "Employee Work Trend", key: "employee_work_trend" },
-                { name: "Completion Trend", key: "maintenance_completion_trend" },
-                { name: "Component Costs", key: "component_costs_trend" },
-                { name: "Active Companies", key: "most_active_companies" },
-                { name: "Outsourced vs In-House", key: "outsourced_vs_inhouse" }
-            ]
         }
     ];
-
-    const isVisualReport = reportCategories[1].reports.some(report => report.key === view);
 
     const fetchReportData = async () => {
         setIsLoading(true);
         setError(null);
         try {
-            const endpoint = isVisualReport 
-                ? `/api/${view}` 
-                : `/${view}`;
+            const endpoint = `/${view}`; 
                 
             const response = await axios.get(`http://localhost:5000/reports${endpoint}`);
             

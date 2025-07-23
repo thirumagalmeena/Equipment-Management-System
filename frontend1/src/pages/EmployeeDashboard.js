@@ -7,7 +7,7 @@ import "../styles/EmployeeDashboard.css";
 const EmployeeDashboard = () => {
   const navigate = useNavigate();
 
-  const userID = localStorage.getItem("userID"); // ✅ Retrieve userID
+  const userID = localStorage.getItem("userID");
 
   const [currentTime, setCurrentTime] = useState(new Date());
   const [employeeData, setEmployeeData] = useState(null);
@@ -17,7 +17,7 @@ const EmployeeDashboard = () => {
 
   useEffect(() => {
     if (!userID) {
-      navigate("/login"); // ✅ Redirect if userID is missing
+      navigate("/login");
       return;
     }
 
@@ -40,14 +40,14 @@ const EmployeeDashboard = () => {
   }, [userID]);
 
   const handleLogout = () => {
-    localStorage.removeItem("userID"); // ✅ Clear user data
-    navigate("/login"); // ✅ Redirect to login
+    localStorage.removeItem("userID");
+    navigate("/login"); //
   };
 
   return (
     <div className="employee-dashboard-page">
       <div className="dashboard-container">
-        <EmpSidebar /> {/* ✅ Sidebar does not need userID in props */}
+        <EmpSidebar /> {/* Sidebar does not need userID in props */}
         <div className="dashboard-main">
           <div className="dashboard-header">
             <h2>Welcome, { "Loading..." }</h2>

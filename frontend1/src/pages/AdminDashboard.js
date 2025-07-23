@@ -29,15 +29,6 @@ const AdminDashboard = () => {
         <button onClick={() => navigate("/admin/reports")}>
           📈 Reports & Data Analysis
         </button>
-        <button onClick={() => navigate("/admin/notifications")}>
-          🔔 Notifications & Alerts
-        </button>
-        <button onClick={() => navigate("/admin/security")}>
-          🔐 User Access & Security
-        </button>
-        <button onClick={() => navigate("/admin/settings")}>
-          ⚙️ Settings & Customization
-        </button>
       </div>
       <Footer />
     </div>
